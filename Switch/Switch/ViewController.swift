@@ -106,6 +106,8 @@ class ViewController: UIViewController {
             self.myLabel.text = "Button is OFF"
         }
     }
+    
+    
     @objc func IsOn(target: UISwitch) {
         if target.isOn {
             self.myButton.isUserInteractionEnabled = true
