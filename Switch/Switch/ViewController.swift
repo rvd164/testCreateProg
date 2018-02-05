@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let myButton = UIButton()
     let myLabel = UILabel()
     let myLabel2 = UILabel()
+    let mypicker = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,15 @@ class ViewController: UIViewController {
         // on
         self.mySwitch2.onTintColor = UIColor.blue
         
-        // start inials block
+        // create picker
+        mypicker.center = view.center
+        // subscribe of protocol
+        mypicker.dataSource = self
+        mypicker.delegate =  self
+        self.view.addSubview(mypicker)
+        
+        
+        // start initials block
         self.mySwitch.setOn(false, animated: true)
         self.myButton.isHidden = true
         self.mySwitch2.setOn(false, animated: true)
@@ -130,7 +139,24 @@ class ViewController: UIViewController {
             
         }
     }
-
+ 
 
 }
 
+extension ViewController: UIPickerViewDataSource {
+    // the number of components will be output
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    // number of lines in a component
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 10
+    }
+}
+
+extension ViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let result = "row = \(row)"
+        return result
+    }
+}
