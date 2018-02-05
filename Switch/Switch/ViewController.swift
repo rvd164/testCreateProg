@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     let myLabel = UILabel()
     let myLabel2 = UILabel()
     let mypicker = UIPickerView()
+    let myPickerDate = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,11 +71,14 @@ class ViewController: UIViewController {
         self.mySwitch2.onTintColor = UIColor.blue
         
         // create picker
-        mypicker.center = view.center
+      //  mypicker.center = view.center -- it's
+        mypicker.frame  = CGRect(x: 5, y: 200, width: 250, height: 150)
         // subscribe of protocol
         mypicker.dataSource = self
         mypicker.delegate =  self
         self.view.addSubview(mypicker)
+        
+        // create Date picker
         
         
         // start initials block
@@ -146,11 +150,11 @@ class ViewController: UIViewController {
 extension ViewController: UIPickerViewDataSource {
     // the number of components will be output
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     // number of lines in a component
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return 5
     }
 }
 
