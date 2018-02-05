@@ -21,16 +21,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // create Label
-        self.myLabel.frame = CGRect(x: 5, y: 100, width: 140, height: 25)
+        self.myLabel.frame = CGRect(x: 5, y: 20, width: 140, height: 25)
         self.myLabel.text = "Button is Off"
         self.view.addSubview(self.myLabel)
         
-        self.myLabel2.frame = CGRect(x: 5, y: 150, width: 140, height: 25)
+        self.myLabel2.frame = CGRect(x: 5, y: 60, width: 140, height: 25)
         self.myLabel2.text = "Button is off"
         self.view.addSubview(self.myLabel2)
         
         // create Button
-        self.myButton.frame = CGRect(x: 250, y: 100, width: 100, height: 25)
+        self.myButton.frame = CGRect(x: 210, y: 20, width: 90, height: 25)
         self.myButton.backgroundColor = UIColor.darkGray
         self.myButton.setTitle("OK", for: .normal)
         self.myButton.setTitle("On click", for: .highlighted)
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         
        
         // create switch
-     self.mySwitch.frame = CGRect(x: 150, y: 100, width: 0, height: 0)
+     self.mySwitch.frame = CGRect(x: 150, y: 20, width: 0, height: 0)
         self.view.addSubview(self.mySwitch)
         // switch is status - On
         
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         
         
         // create switch2 metod one
-        self.mySwitch2.frame = CGRect(x: 150, y: 150, width: 0, height: 0)
+        self.mySwitch2.frame = CGRect(x: 150, y: 60, width: 0, height: 0)
         
         self.view.addSubview(self.mySwitch2)
         
@@ -72,21 +72,38 @@ class ViewController: UIViewController {
         
         // create picker
       //  mypicker.center = view.center -- it's
-        mypicker.frame  = CGRect(x: 5, y: 200, width: 250, height: 150)
+        mypicker.frame  = CGRect(x: 5, y: 100, width: 150, height: 80)
         // subscribe of protocol
         mypicker.dataSource = self
         mypicker.delegate =  self
         self.view.addSubview(mypicker)
         
         // create Date picker
-        
+        myPickerDate.frame = CGRect(x: 5, y: 180, width: 300  , height: 200)
+        myPickerDate.datePickerMode = .date
+        self.view.addSubview(myPickerDate)
         
         // start initials block
+        
+           // --> user restriction! Change only two year from the current date
+        var oneYearTime = TimeInterval()
+            oneYearTime = 365 * 24 * 60 * 60
+        let todayDate = Date()
+        let oneYearFromToday = todayDate.addingTimeInterval(1)
+        let twoYearFromDate  = todayDate.addingTimeInterval(2 * oneYearTime)
+        
+        myPickerDate.minimumDate = oneYearFromToday
+        myPickerDate.maximumDate = twoYearFromDate
+           // end restriction <--
+        
+        
         self.mySwitch.setOn(false, animated: true)
         self.myButton.isHidden = true
         self.mySwitch2.setOn(false, animated: true)
         
         self.myButton.isUserInteractionEnabled = false
+        // end initials block
+        
         
         // create observers of events --
         // switch start ->
@@ -98,13 +115,19 @@ class ViewController: UIViewController {
         // button
         self.mySwitch2.addTarget(self, action: #selector(IsOn(target:)), for: .valueChanged)
         
-  
+        // date picker
+        myPickerDate.addTarget(self, action: #selector(datePickerChange(paramDatePicker:)), for: .valueChanged)
         
         
         
     }
     
-   
+    @objc func datePickerChange(paramDatePicker: UIDatePicker ) {
+        if paramDatePicker.isEqual(self.myPickerDate) {
+            print("dateChange: =",paramDatePicker.date)
+        }
+        
+    }
     
     
     @objc func IsEnabled(target: UISwitch) {
@@ -150,7 +173,7 @@ class ViewController: UIViewController {
 extension ViewController: UIPickerViewDataSource {
     // the number of components will be output
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 1
     }
     // number of lines in a component
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
