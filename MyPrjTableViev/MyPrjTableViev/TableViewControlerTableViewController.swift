@@ -57,7 +57,7 @@ class TableViewControlerTableViewController: UITableViewController {
         
       //  var animalDictSort = [String: String]()
       //  animalDictSort         = animalDict.sortedByKey
-        animalsSectionsTitles = [String](animalDict.sortedByKey)
+    //    animalsSectionsTitles = [String](animalDict.sortedByKey)
         //   animalsSectionsTitles = Array(animalsSectionsTitles).sorted{$0.0 < $1.0}
         //   animalsSectionsTitles = animalsSectionsTitles.sortedByKey
     }
