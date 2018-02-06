@@ -16,7 +16,7 @@ class TableViewControlerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+         createAnimalDict()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,16 +33,25 @@ class TableViewControlerTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return animalsSectionsTitles.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return animalsSectionsTitles[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        let animalKey = animalsSectionsTitles[section]
+        if let animalValue = animalDict[animalKey] {
+            return animalValue.count
+        } else {
         return 0
+        }
     }
     
     func createAnimalDict() {
-        animalDict = Dictionary(grouping: animals)  //   (group: animals)  {$0.characters.first!}
+      //  animalDict = Dictionary(grouping: animals)  //   (group: animals)  {$0.characters.first!}
         // var animalValues = [String:[String]]()
         for animal in animals {
             let animalKey = String(animal[..<1])       // Cut first symbol
@@ -57,9 +66,12 @@ class TableViewControlerTableViewController: UITableViewController {
         
       //  var animalDictSort = [String: String]()
       //  animalDictSort         = animalDict.sortedByKey
-    //    animalsSectionsTitles = [String](animalDict.sortedByKey)
+        
+        animalsSectionsTitles = [String](animalDict.keys)
+        
         //   animalsSectionsTitles = Array(animalsSectionsTitles).sorted{$0.0 < $1.0}
-        //   animalsSectionsTitles = animalsSectionsTitles.sortedByKey
+        animalsSectionsTitles.sorted(by: { $0 < $1 })
+        //
     }
     
 
