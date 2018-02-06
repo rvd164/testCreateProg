@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewControlerTableViewController: UITableViewController {
 
-    let animals = ["Птах","Півень","Ящірка","Барс","Тигр","Борсук","Лев","Леопард","Страус","Пес","Вовк"]
+    let animals = ["Птах","Півень","Ящірка","Барс","Тигр","Борсук","Лев","Леопард","Страус","Пес","Вовк","Leopard","Cat"]
     var animalsSectionsTitles = [String]()
     var animalDict = [String: [String]]()
     
@@ -70,13 +70,24 @@ class TableViewControlerTableViewController: UITableViewController {
         animalsSectionsTitles = [String](animalDict.keys)
         
         //   animalsSectionsTitles = Array(animalsSectionsTitles).sorted{$0.0 < $1.0}
-        animalsSectionsTitles.sorted(by: { $0 < $1 })
+        animalsSectionsTitles.sort(by: { $0 < $1 })
         //
     }
     
-
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let animalKey = animalsSectionsTitles[indexPath.section]
+        if let animalValues = animalDict[animalKey] {
+            cell.textLabel?.text = animalValues[indexPath.row]
+        }
+        return cell
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return animalsSectionsTitles
+    }
+    /*
+    override func tableView(tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
