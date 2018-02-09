@@ -59,7 +59,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Вид Транспорту" id="KQ3-DF-ozk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2IM-7B-dvP"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2IM-7B-dvP">
+                            <connections>
+                                <action selector="pushAddAction:" destination="E6X-ui-hDj" id="15E-bV-WKp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ECb-1S-Ltw" userLabel="First Responder" sceneMemberID="firstResponder"/>
