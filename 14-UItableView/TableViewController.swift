@@ -56,7 +56,7 @@ class TableViewController: UITableViewController {
 
     @IBAction func pushAddAction(_ sender: Any) {
   // dataArray.append("New element")
-     var alert = UIAlertController(title: "Новий вид транспорту ", message: "Додати новий", preferredStyle: .alert)
+     var alert = UIAlertController(title: "ид транспорту ", message: "Додати новий", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) {
             (action: UIAlertAction!) -> Void in
             let textField = alert.textFields![0]
@@ -79,6 +79,8 @@ class TableViewController: UITableViewController {
         saveData()
     
     }
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return dataArray.count
