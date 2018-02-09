@@ -14,6 +14,8 @@ class TableViewControlerTableViewController: UITableViewController {
     var animalsSectionsTitles = [String]()
     var animalDict = [String: [String]]()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          createAnimalDict()
