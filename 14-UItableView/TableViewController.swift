@@ -11,12 +11,26 @@ import UIKit
 class TableViewController: UITableViewController {
 
     var dataArray:[String] = []
+    func saveData() {
+        UserDefaults.standard.set(dataArray, forKey: "dataArray")   // StandardUserDefaults().s      //setObject(dataArray, forkey: "dataArray") //    (dataArray,forKey: "dataArray")
+        UserDefaults.standard.synchronize()
+    }
     
+    func loadData() {
+        let data = UserDefaults.standard.object(forKey: "dataArray")
+        if data != nil {
+            dataArray = data as! [String]
+        } else {
+            dataArray = []
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataArray.append("Літак")
-        dataArray.append("Машина")
-        dataArray.append("Велосипед")
+        loadData()
+        
+      //  dataArray.append("Літак")
+      //  dataArray.append("Машина")
+      //  dataArray.append("Велосипед")
     
     }
 
@@ -35,6 +49,7 @@ class TableViewController: UITableViewController {
     @IBAction func pushAddAction(_ sender: Any) {
    dataArray.append("New element")
         tableView.reloadData()
+        saveData()
     
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,7 +85,7 @@ class TableViewController: UITableViewController {
             // Delete the row from the data source
             dataArray.remove(at: indexPath.row)
             
-            
+            saveData()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
