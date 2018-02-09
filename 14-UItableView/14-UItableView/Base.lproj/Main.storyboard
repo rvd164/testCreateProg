@@ -59,6 +59,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Вид Транспорту" id="KQ3-DF-ozk">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="mIj-Rw-2dW">
+                            <connections>
+                                <action selector="pushEditAction:" destination="E6X-ui-hDj" id="bmu-fT-lLY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2IM-7B-dvP">
                             <connections>
                                 <action selector="pushAddAction:" destination="E6X-ui-hDj" id="15E-bV-WKp"/>
