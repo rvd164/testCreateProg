@@ -55,7 +55,26 @@ class TableViewController: UITableViewController {
     
 
     @IBAction func pushAddAction(_ sender: Any) {
-   dataArray.append("New element")
+  // dataArray.append("New element")
+     var alert = UIAlertController(title: "Новий вид транспорту ", message: "Додати новий", preferredStyle: .alert)
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            (action: UIAlertAction!) -> Void in
+            let textField = alert.textFields![0]
+            self.dataArray.append(textField.text!)
+        self.tableView.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {
+        (action: UIAlertAction!) -> Void in
+            
+        }
+        
+        alert.addTextField {(textField: UITextField) -> Void in
+        }
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+        
         tableView.reloadData()
         saveData()
     
