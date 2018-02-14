@@ -56,7 +56,7 @@ class TableViewController: UITableViewController {
 
     @IBAction func pushAddAction(_ sender: Any) {
   // dataArray.append("New element")
-     var alert = UIAlertController(title: "ид транспорту ", message: "Додати новий", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Вид транспорту ", message: "Додати новий", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) {
             (action: UIAlertAction!) -> Void in
             let textField = alert.textFields![0]
@@ -141,14 +141,17 @@ class TableViewController: UITableViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+   
+        let selectedData = dataArray[(tableView.indexPathForSelectedRow?.row)!]
+        (segue.destination as! NewViewController).textData = selectedData
     }
-    */
+    
 
 }
